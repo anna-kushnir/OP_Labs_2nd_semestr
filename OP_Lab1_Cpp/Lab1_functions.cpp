@@ -9,17 +9,10 @@ void create_first_file(string path)
 {
 	string Text;
 	ofstream FstFile(path);
-	cout << "Введіть текст (ознака кінця тексту - введення порожнього рядка):\n";
-	while (true)
+	cout << "Введіть текст (щоб завершити введення тексту - введіть ctrl + Z + Enter):\n";
+	while (getline(cin, Text))
 	{
-		Text = "";
-		getline(cin, Text);
-		if (Text != "") {
-			FstFile << Text << endl;
-		}
-		else {
-			break;
-		}
+		FstFile << Text << endl;
 	}
 	FstFile.close();
 }

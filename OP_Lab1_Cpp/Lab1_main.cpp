@@ -20,7 +20,7 @@ int main()
 		return -1;
 	}
 
-	cout << "Вихідний файл:\n";
+	cout << "\nВихідний файл:\n";
 	output_text_of_file(path1);
 	cout << "\nСтворений файл\n";
 	output_text_of_file(path2);
