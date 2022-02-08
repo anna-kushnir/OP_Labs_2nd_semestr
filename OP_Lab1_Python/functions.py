@@ -10,6 +10,7 @@ def creating_first_file(path):
             FstFile.write('\n')
 
 def deleting_2_symb_words(path1,path2):
+    Count = 0
     with open(path1,'rt',encoding = 'cp1251') as FstFile, open(path2,'wt') as SndFile:
         while True:
             Text = (FstFile.readline())
@@ -26,6 +27,7 @@ def deleting_2_symb_words(path1,path2):
                         m = len(Text)
                     word = Text[k:m]
                     if len(word) == 2:
+                        Count += 1
                         if k == 0 and m == len(Text):
                             Text = Text.replace(Text,'',1)
                         elif m != len(Text):
@@ -35,6 +37,7 @@ def deleting_2_symb_words(path1,path2):
                     else:
                         k = m + 1
             SndFile.write(Text + '\n')
+        SndFile.write('Кількість вилучених слів: ' + str(Count))
     pass
 
 def output_file(path):
