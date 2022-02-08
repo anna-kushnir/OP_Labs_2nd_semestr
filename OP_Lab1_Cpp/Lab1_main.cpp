@@ -12,6 +12,7 @@ int main()
 	{
 		return -1;
 	}
+	delete_2_symb_words(path1, path2);
 
 
 	system("pause");

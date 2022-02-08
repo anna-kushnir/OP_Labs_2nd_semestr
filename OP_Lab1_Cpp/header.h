@@ -6,3 +6,4 @@
 using namespace std;
 
 int create_first_file(string);
+void delete_2_symb_words(string, string);
