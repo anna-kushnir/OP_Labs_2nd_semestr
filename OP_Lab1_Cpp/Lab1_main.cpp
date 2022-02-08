@@ -13,11 +13,12 @@ int main()
 	string path1, path2;
 	path1 = "FirstFile.txt";
 	path2 = "SecondFile.txt";
-	int flag = create_first_file(path1);
+	create_first_file(path1);
+
+	int flag = delete_2_symb_words(path1, path2);
 	if (!flag) {
 		return -1;
 	}
-	delete_2_symb_words(path1, path2);
 
 	cout << "Вихідний файл:\n";
 	output_text_of_file(path1);

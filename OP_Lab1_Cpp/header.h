@@ -6,6 +6,6 @@
 #include <windows.h>
 using namespace std;
 
-int create_first_file(string);
-void delete_2_symb_words(string, string);
+void create_first_file(string);
+int delete_2_symb_words(string, string);
 void output_text_of_file(string);

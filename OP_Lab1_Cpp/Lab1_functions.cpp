@@ -5,14 +5,10 @@
 #include <windows.h>
 using namespace std;
 
-int create_first_file(string path)
+void create_first_file(string path)
 {
 	string Text;
 	ofstream FstFile(path);
-	if (!FstFile) {
-		cout << "Не вдалося відкрити файл!\n";
-		return 0;
-	}
 	cout << "Введіть текст (ознака кінця тексту - введення порожнього рядка):\n";
 	while (true)
 	{
@@ -26,13 +22,16 @@ int create_first_file(string path)
 		}
 	}
 	FstFile.close();
-	return 1;
 }
 
-void delete_2_symb_words(string path1, string path2)
+int delete_2_symb_words(string path1, string path2)
 {
 	ifstream FstFile(path1);
 	ofstream SndFile(path2);
+	if (!FstFile) {
+		cout << "Не вдалося відкрити файл!\n";
+		return 0;
+	}
 	string Text, word;
 	int Count = 0;
 	while (FstFile)
@@ -74,16 +73,22 @@ void delete_2_symb_words(string path1, string path2)
 	SndFile << "Кількість вилучених слів: " << Count;
 	FstFile.close();
 	SndFile.close();
+	return 1;
 }
 
 void output_text_of_file(string path)
 {
 	ifstream File(path);
-	string Text;
-	while (File) {
-		Text = "";
-		getline(File, Text);
-		cout << Text << endl;
+	if (!File) {
+		cout << "Не вдалося відкрити файл для виведення в консоль!\n";
 	}
-	File.close();
+	else {
+		string Text;
+		while (File) {
+			Text = "";
+			getline(File, Text);
+			cout << Text << endl;
+		}
+		File.close();
+	}
 }
