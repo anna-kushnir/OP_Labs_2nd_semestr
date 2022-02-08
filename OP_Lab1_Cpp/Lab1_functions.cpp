@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <fstream>
 #include <string>
 #include <iomanip>
@@ -9,10 +9,10 @@ int create_first_file(string path)
 	string Text;
 	ofstream FstFile(path);
 	if (!FstFile) {
-		cout << "Íå âäàëîñÿ âiäêðèòè ôàéë!\n";
+		cout << "ÐÐµ Ð²Ð´Ð°Ð»Ð¾ÑÑ Ð²iÐ´ÐºÑ€Ð¸Ñ‚Ð¸ Ñ„Ð°Ð¹Ð»!\n";
 		return 0;
 	}
-	cout << "Ââåäiòü òåêñò (îçíàêà êiíöÿ òåêñòó - ââåäåííÿ ïîðîæíüîãî ðÿäêà):\n";
+	cout << "Ð’Ð²ÐµÐ´iÑ‚ÑŒ Ñ‚ÐµÐºÑÑ‚ (Ð¾Ð·Ð½Ð°ÐºÐ° ÐºiÐ½Ñ†Ñ Ñ‚ÐµÐºÑÑ‚Ñƒ - Ð²Ð²ÐµÐ´ÐµÐ½Ð½Ñ Ð¿Ð¾Ñ€Ð¾Ð¶Ð½ÑŒÐ¾Ð³Ð¾ Ñ€ÑÐ´ÐºÐ°):\n";
 	while (true)
 	{
 		Text = "";
@@ -80,7 +80,7 @@ void delete_2_symb_words(string path1, string path2)
 		}
 		SndFile << Text << endl;
 	}
-	SndFile << "Êiëüêiñòü âèëó÷åíèõ ñëiâ: " << Count;
+	SndFile << "ÐšiÐ»ÑŒÐºiÑÑ‚ÑŒ Ð²Ð¸Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ… ÑÐ»iÐ²: " << Count;
 	FstFile.close();
 	SndFile.close();
 }
