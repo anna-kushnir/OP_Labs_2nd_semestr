@@ -14,8 +14,7 @@ int main()
 	path1 = "FirstFile.txt";
 	path2 = "SecondFile.txt";
 	int flag = create_first_file(path1);
-	if (!flag)
-	{
+	if (!flag) {
 		return -1;
 	}
 	delete_2_symb_words(path1, path2);
