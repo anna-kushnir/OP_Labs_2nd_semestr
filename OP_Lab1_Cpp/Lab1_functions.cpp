@@ -10,10 +10,10 @@ int create_first_file(string path)
 	string Text;
 	ofstream FstFile(path);
 	if (!FstFile) {
-		cout << "Не вдалося вiдкрити файл!\n";
+		cout << "Не вдалося відкрити файл!\n";
 		return 0;
 	}
-	cout << "Введiть текст (ознака кiнця тексту - введення порожнього рядка):\n";
+	cout << "Введіть текст (ознака кінця тексту - введення порожнього рядка):\n";
 	while (true)
 	{
 		Text = "";
@@ -81,8 +81,20 @@ void delete_2_symb_words(string path1, string path2)
 		}
 		SndFile << Text << endl;
 	}
-	SndFile << "Кiлькiсть вилучених слiв: " << Count;
+	SndFile << "Кількість вилучених слів: " << Count;
 	FstFile.close();
 	SndFile.close();
 }
 
+void output_text_of_file(string path)
+{
+	ifstream File(path);
+	string Text;
+	while (File)
+	{
+		Text = "";
+		getline(File, Text);
+		cout << Text << endl;
+	}
+	File.close();
+}
