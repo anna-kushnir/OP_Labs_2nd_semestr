@@ -4,3 +4,8 @@
 Вивести вміст вихідного і створеного файлів."""
 
 from functions import *
+path1 = 'FirstFile.txt'
+path2 = 'SecondFile.txt'
+
+print('Введіть ваш текст:')
+creating_first_file(path1)
