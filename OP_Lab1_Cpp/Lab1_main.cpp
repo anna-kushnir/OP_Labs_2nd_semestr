@@ -3,7 +3,8 @@ using namespace std;
 
 int main()
 {
-	setlocale(LC_ALL, "ru");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	string path1, path2;
 	path1 = "FirstFile.txt";
 	path2 = "SecondFile.txt";

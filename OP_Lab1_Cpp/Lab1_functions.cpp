@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include <windows.h>
 using namespace std;
 
 int create_first_file(string path)
