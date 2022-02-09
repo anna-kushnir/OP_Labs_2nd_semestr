@@ -14,17 +14,13 @@ int main()
 	path1 = "FirstFile.txt";
 	path2 = "SecondFile.txt";
 	create_first_file(path1);
-
-	int flag = delete_2_symb_words(path1, path2);
-	if (!flag) {
+	if (!delete_2_symb_words(path1, path2)) {
 		return -1;
 	}
-
 	cout << "\nВихідний файл:\n";
 	output_text_of_file(path1);
 	cout << "\nСтворений файл\n";
 	output_text_of_file(path2);
-
 	system("pause");
 	return 0;
 }

@@ -1,23 +1,23 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
-#include <iomanip>
 #include <windows.h>
 using namespace std;
 
+// Створення текстового файлу з текстом, введеним користувачем з клавіатури.
 void create_first_file(string path)
 {
 	string Text;
 	ofstream FstFile(path);
 	cout << "Введіть текст (щоб завершити введення тексту - введіть ctrl + Z + Enter):\n";
-	while (getline(cin, Text))
-	{
+	while (getline(cin, Text)) {
 		FstFile << Text << endl;
 	}
 	FstFile.close();
 }
-
-int delete_2_symb_words(string path1, string path2)
+// Створення нового текстового файлу, що складається з рядків вихідного файлу, у яких вилучені 
+// всі двосимвольні слова, а в кінці дописана кількість вилучених слів.
+bool delete_2_symb_words(string path1, string path2)
 {
 	ifstream FstFile(path1);
 	ofstream SndFile(path2);
@@ -68,7 +68,7 @@ int delete_2_symb_words(string path1, string path2)
 	SndFile.close();
 	return 1;
 }
-
+// Виведення змісту файлу в консоль.
 void output_text_of_file(string path)
 {
 	ifstream File(path);
