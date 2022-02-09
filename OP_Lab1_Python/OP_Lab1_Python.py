@@ -6,12 +6,9 @@
 from functions import *
 path1 = 'FirstFile.txt'
 path2 = 'SecondFile.txt'
-
 print('Введіть ваш текст:')
 creating_first_file(path1)
-
 deleting_2_symb_words(path1,path2)
-
 print('\nВихідний файл:')
 output_file(path1)
 print('\n\nСтворений файл:')

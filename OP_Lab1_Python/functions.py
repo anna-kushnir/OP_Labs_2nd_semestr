@@ -1,3 +1,4 @@
+# Створення текстового файлу з текстом, введеним користувачем з клавіатури.
 def creating_first_file(path):
     with open(path,'wt') as FstFile:
         while True:
@@ -8,7 +9,9 @@ def creating_first_file(path):
                 else:
                     return
             FstFile.write('\n')
-
+    pass
+# Створення нового текстового файлу, що складається з рядків вихідного файлу, у яких вилучені 
+# всі двосимвольні слова, а в кінці дописана кількість вилучених слів.
 def deleting_2_symb_words(path1,path2):
     Count = 0
     with open(path1,'rt',encoding = 'cp1251') as FstFile, open(path2,'wt') as SndFile:
@@ -39,7 +42,7 @@ def deleting_2_symb_words(path1,path2):
             SndFile.write(Text + '\n')
         SndFile.write('Кількість вилучених слів: ' + str(Count))
     pass
-
+# Виведення змісту файлу в консоль.
 def output_file(path):
     with open(path,'rt',encoding = 'cp1251') as File:
         while True:
