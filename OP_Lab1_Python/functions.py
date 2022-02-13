@@ -2,13 +2,16 @@
 def creating_first_file(path):
     with open(path,'wt') as FstFile:
         while True:
-            Text = input()
-            for letter in Text:
-                if ord(letter) >= 32:
-                    FstFile.write(letter)
-                else:
-                    return
-            FstFile.write('\n')
+            try:
+                Text = input()
+                for letter in Text:
+                    if ord(letter) >= 32:
+                        FstFile.write(letter)
+                    else:
+                        return
+                FstFile.write('\n')
+            except EOFError:
+               pass
     pass
 # Створення нового текстового файлу, що складається з рядків вихідного файлу, у яких вилучені 
 # всі двосимвольні слова, а в кінці дописана кількість вилучених слів.
