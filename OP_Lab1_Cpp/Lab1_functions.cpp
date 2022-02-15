@@ -5,25 +5,25 @@
 using namespace std;
 
 // Створення текстового файлу з текстом, введеним користувачем з клавіатури.
-void create_first_file(string path)
+void create_first_file(string path1)
 {
 	string Text;
-	ofstream FstFile(path);
+	ofstream FstFile(path1);
 	cout << "Введіть текст (щоб завершити введення тексту - введіть ctrl + Z + Enter):\n";
 	while (getline(cin, Text)) {
 		FstFile << Text << endl;
 	}
 	FstFile.close();
 }
-// Створення нового текстового файлу, що складається з рядків вихідного файлу, у яких вилучені 
-// всі двосимвольні слова, а в кінці дописана кількість вилучених слів.
-bool delete_2_symb_words(string path1, string path2)
+// Створення нового файлу з рядків вихідного файлу, у якому видалені
+// всі двосимвольні слова.
+int delete_2_symb_words(string path1, string path2)
 {
 	ifstream FstFile(path1);
 	ofstream SndFile(path2);
 	if (!FstFile) {
-		cout << "Не вдалося відкрити файл!\n";
-		return 0;
+		cout << "Не вдалося відкрити вихiдний файл!\n";
+		return -1;
 	}
 	string Text, word;
 	int Count = 0;
@@ -63,8 +63,19 @@ bool delete_2_symb_words(string path1, string path2)
 		}
 		SndFile << Text << endl;
 	}
-	SndFile << "Кількість вилучених слів: " << Count;
 	FstFile.close();
+	SndFile.close();
+	return Count;
+}
+// Додавання в кінець нового файлу кількості вилучених слів.
+int add_number_of_del_words(string path, int Count)
+{
+	ofstream SndFile(path, ios::app);
+	if (!SndFile) {
+		cout << "Не вдалося відкрити створений файл!\n";
+		return 0;
+	}
+	SndFile << "Кількість вилучених слів: " << Count;
 	SndFile.close();
 	return 1;
 }
