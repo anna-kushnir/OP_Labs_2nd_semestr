@@ -18,18 +18,18 @@ int main()
     create_first_file(FirstFileOut);
     FirstFileOut.close();
 
-    ifstream FirstFileIn1(path1);
+    ifstream FirstFileIn(path1);
     cout << "\nВихідний файл:\n";
-    output_text_of_file(FirstFileIn1);
-    FirstFileIn1.close();
+    output_text_of_file(FirstFileIn);
+    FirstFileIn.close();
 
-    ifstream FirstFileIn2(path1);
+    FirstFileIn.open(path1);
     ofstream SecondFileOut(path2);
-    int num_of_words = delete_2_symb_words(FirstFileIn2, SecondFileOut);
+    int num_of_words = delete_2_symb_words(FirstFileIn, SecondFileOut);
     if (num_of_words == -1) {
         return -1;
     }
-    FirstFileIn2.close();
+    FirstFileIn.close();
     SecondFileOut.close();
 
     ofstream SecondFileApp(path2, ios::app);
