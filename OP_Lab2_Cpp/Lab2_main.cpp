@@ -10,7 +10,9 @@ int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-
+	string path = "File.dat";
+	ofstream File(path, ios::binary);
+	Input_Breaks(File);
 
 
 
