@@ -61,7 +61,7 @@ void Output_Breaks_In_File(ofstream& file, Period* breaks, Period work, int n)
 	delete[] breaks;
 }
 
-//Перевірка перерв на повторення та чи не виходять вони за межі часу робочого дня
+//Перевірка перерв на накладання та повторення, також чи не виходять вони за межі часу робочого дня
 bool Check_Breaks(Period* breaks, Period& check_break, Period work, int k)
 {
 	
@@ -70,40 +70,57 @@ bool Check_Breaks(Period* breaks, Period& check_break, Period work, int k)
 	for (int i = 0; i < k; ++i) {
 		if (Breaks_Is_Equal(breaks[i], check_break)) 
 			return false;
+		Breaks_Is_Overlap(breaks[i], check_break);
 	}
 	return true;
 }
 
 //Перевірка, чи перерва не виходить за межі робочого дня, та зсунення перерви, якщо лише її початок 
 //або кінець виходить за його межі
-bool Break_Is_In_Work_Time(Period& check_break, Period work)
+bool Break_Is_In_Work_Time(Period& breaks, Period work)
 {
-	if (check_break.end.hour < work.start.hour ||
-		check_break.end.hour == work.start.hour && check_break.end.min <= work.start.min)
+	if (breaks.end.hour < work.start.hour ||
+		breaks.end.hour == work.start.hour && breaks.end.min <= work.start.min)
 		return false;
-	if (check_break.start.hour > work.end.hour ||
-		check_break.start.hour == work.end.hour && check_break.start.min >= work.end.min)
+	if (breaks.start.hour > work.end.hour ||
+		breaks.start.hour == work.end.hour && breaks.start.min >= work.end.min)
 		return false;
-	if (check_break.start.hour < work.start.hour ||
-		check_break.start.hour == work.start.hour && check_break.start.min < work.start.min)
-	{	check_break.start.hour = work.start.hour;
-		check_break.start.min = work.start.min;
+	if (breaks.start.hour < work.start.hour ||
+		breaks.start.hour == work.start.hour && breaks.start.min < work.start.min)
+	{	breaks.start.hour = work.start.hour;
+		breaks.start.min = work.start.min;
 	}
-	if (check_break.end.hour > work.end.hour ||
-		check_break.end.hour == work.end.hour && check_break.end.min > work.end.min)
-	{
-		check_break.end.hour = work.end.hour;
-		check_break.end.min = work.end.min;
+	if (breaks.end.hour > work.end.hour ||
+		breaks.end.hour == work.end.hour && breaks.end.min > work.end.min)
+	{	breaks.end.hour = work.end.hour;
+		breaks.end.min = work.end.min;
 	}
 	return true;
 }
 
-//Перевірка, чи перерви накладаються одна на одну
+//Перевірка, чи перерви повністю ідентичні
 bool Breaks_Is_Equal(Period A, Period B)
 {
 	if (A.start.hour == B.start.hour && A.start.min == B.start.min &&
 		A.end.hour == B.end.hour && A.end.min == B.end.min) return true;
 	else return false;
+}
+
+//Перевірка, чи перерви накладаються одна на одну
+void Breaks_Is_Overlap(Period A, Period& B)
+{
+	if ((A.start.hour < B.start.hour || A.start.hour == B.start.hour && A.start.min <= B.start.min)
+		&& (A.end.hour > B.start.hour || A.end.hour == B.start.hour && A.end.min > B.start.min))
+	{
+		B.start.hour = A.end.hour;
+		B.start.min = A.end.min;
+	}
+	else if ((A.end.hour > B.end.hour || A.end.hour == B.end.hour && A.end.min >= B.end.min)
+		&& (A.start.hour > B.start.hour || A.start.hour == B.start.hour && A.start.min > B.start.min))
+	{
+		B.end.hour = A.start.hour;
+		B.end.min = A.start.min;
+	}
 }
 
 //Обчислення тривалості певного періоду часу
