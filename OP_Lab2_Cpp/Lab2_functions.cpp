@@ -1,13 +1,25 @@
-﻿//Створити файл із переліком технічних перерв у роботі каси: час початку та час кінця
-//перерви. При введенні даних перевіряти, чи не накладається нова перерва на вже наявну.
-//Визначити, чи встигне касир обслужити N клієнтів (N ввести з клавіатури), які стоять у 
-//черзі, якщо на одного клієнта в середньому витрачається 15 хв.
+﻿//Створити файл із переліком технічних перерв у роботі каси: час початку та час кінця перерви. 
+//При введенні даних перевіряти, чи не накладається нова перерва на вже наявну.
+//Визначити, чи встигне касир обслужити N клієнтів (N ввести з клавіатури), які стоять у черзі, 
+//якщо на одного клієнта в середньому витрачається 15 хв.
 
 #include "header.h"
 using namespace std;
 
-//Введення користувачем часу початку та кінця робочого дня та їх збереження 
-//в об'єкті work структури Period
+//Виведення списку перерв із файлу у консоль
+void Output_File_In_Console(ifstream& file)
+{
+	Period breaks;                     // змінна для збереження даних про перерву
+	cout << "\nПерелiк технiчних перерв у роботi каси:\n\n";
+	while (file.read((char*)&breaks, sizeof(Period))) {
+		cout.fill('0');
+		cout << setw(2) << breaks.start.hour << ":" << setw(2) << breaks.start.min << " - "
+			<< setw(2) << breaks.end.hour << ":" << setw(2) << breaks.end.min << endl;
+	}
+}
+
+//Введення користувачем часу початку та кінця робочого дня та їх збереження в об'єкті work 
+//структури Period
 Period Input_Working_Hours()
 {
 	Period work;                        // робочий час
@@ -16,12 +28,11 @@ Period Input_Working_Hours()
 	cin >> work.start.hour >> ch >> work.start.min;
 	cout << "Введiть час кінця робочого дня (у форматі гг:хх): ";
 	cin >> work.end.hour >> ch >> work.end.min;
-	cout << endl;
 	return work;
 }
 
-//Введення користувачем n перерв (без перевірки на повторення і тд) та їх збереження
-//у масиві об'єктів breaks[] структури Period
+//Введення користувачем n перерв (без перевірки на повторення і тд) та їх збереження у масиві 
+// об'єктів breaks[] структури Period
 Period* Input_Breaks(int n)
 {
 	int i = 0;                          // лічильник
@@ -37,24 +48,11 @@ Period* Input_Breaks(int n)
 	return breaks;
 }
 
-//Виведення списку перерв із файлу у консоль
-void Output_File_In_Console(ifstream& file)
-{
-	Period breaks;                     // змінна для збереження даних про перерву
-	cout << "Перелiк технiчних перерв у роботi каси:\n";
-	while (file.read((char*)&breaks, sizeof(Period))) {
-		cout.fill('0');
-		cout << setw(2) << breaks.start.hour << ":" << setw(2) << breaks.start.min << " - "
-			<< setw(2) << breaks.end.hour << ":" << setw(2) << breaks.end.min << endl;
-	}
-}
-
-//Виведення перерв із масиву у файл з їх перевіркою на повторення та 
-//чи не виходять вони за межі робочого дня
+//Виведення перерв із масиву у файл з їх повною перевіркою
 void Output_Breaks_In_File(ofstream& file, Period* breaks, Period work, int n)
 {
 	for (int i = 0; i < n; ++i) {
-		if (Check_Breaks(breaks, breaks[i], work, i)) {
+		if (Check_Break(breaks, breaks[i], work, i)) {
 			file.write((char*)&breaks[i], sizeof(Period));
 		}
 	}
@@ -62,21 +60,22 @@ void Output_Breaks_In_File(ofstream& file, Period* breaks, Period work, int n)
 }
 
 //Перевірка перерв на накладання та повторення, також чи не виходять вони за межі часу робочого дня
-bool Check_Breaks(Period* breaks, Period& check_break, Period work, int k)
+bool Check_Break(Period* breaks, Period& a_break, Period work, int k)
 {
 	
-	if (!Break_Is_In_Work_Time(check_break, work)) 
+	if (!Break_Is_In_Work_Time(a_break, work))
 		return false;
 	for (int i = 0; i < k; ++i) {
-		if (Breaks_Is_Equal(breaks[i], check_break)) 
+		if (Breaks_Is_Equal(breaks[i], a_break))
 			return false;
-		Breaks_Is_Overlap(breaks[i], check_break);
+		if (Breaks_Is_Overlap(breaks[i], a_break))
+			return false;
 	}
 	return true;
 }
 
-//Перевірка, чи перерва не виходить за межі робочого дня, та зсунення перерви, якщо лише її початок 
-//або кінець виходить за його межі
+//Перевірка, чи перерва не виходить за межі робочого дня, та зсунення початку або кінця перерви, якщо 
+//її початок або кінець відповідно виходить за його межі
 bool Break_Is_In_Work_Time(Period& breaks, Period work)
 {
 	if (breaks.end.hour < work.start.hour ||
@@ -87,12 +86,14 @@ bool Break_Is_In_Work_Time(Period& breaks, Period work)
 		return false;
 	if (breaks.start.hour < work.start.hour ||
 		breaks.start.hour == work.start.hour && breaks.start.min < work.start.min)
-	{	breaks.start.hour = work.start.hour;
+	{	
+		breaks.start.hour = work.start.hour;
 		breaks.start.min = work.start.min;
 	}
 	if (breaks.end.hour > work.end.hour ||
 		breaks.end.hour == work.end.hour && breaks.end.min > work.end.min)
-	{	breaks.end.hour = work.end.hour;
+	{	
+		breaks.end.hour = work.end.hour;
 		breaks.end.min = work.end.min;
 	}
 	return true;
@@ -107,8 +108,11 @@ bool Breaks_Is_Equal(Period A, Period B)
 }
 
 //Перевірка, чи перерви накладаються одна на одну
-void Breaks_Is_Overlap(Period A, Period& B)
+bool Breaks_Is_Overlap(Period A, Period& B)
 {
+	if ((B.start.hour > A.start.hour || B.start.hour == A.start.hour && B.start.min >= A.start.min) 
+		&& B.end.hour < A.end.hour || B.end.hour == A.end.hour && B.end.min <= A.end.min)
+		return true;
 	if ((A.start.hour < B.start.hour || A.start.hour == B.start.hour && A.start.min <= B.start.min)
 		&& (A.end.hour > B.start.hour || A.end.hour == B.start.hour && A.end.min > B.start.min))
 	{
@@ -121,6 +125,7 @@ void Breaks_Is_Overlap(Period A, Period& B)
 		B.end.hour = A.start.hour;
 		B.end.min = A.start.min;
 	}
+	return false;
 }
 
 //Обчислення тривалості певного періоду часу
@@ -132,16 +137,17 @@ int Count_Duration(Period period)
 //Перевірка, чи встигне касир обслужити num_of_cust клієнтів за робочий день
 bool Check_For_Serving_Customers(ifstream& file, Period work, int num_of_cust, int time_for_one_cust)
 {
-	int working_day_duration = Count_Duration(work);        // загальна тривалість робочого дня
-	Period breaks;                                          // змінна для збереження даних про перерву
-	int break_time = 0;                                     // сумарна тривалість перерв
+	int working_day_duration = Count_Duration(work);          // загальна тривалість робочого дня
+	Period breaks;                                            // змінна для збереження даних про перерву
+	int break_time = 0;                                       // сумарна тривалість перерв
 	while (file.read((char*)&breaks, sizeof(Period))) {
 		break_time += Count_Duration(breaks);
 	}
-	cout << "\nСумарна тривалiсть перерв:\n"; 
-	cout << break_time << endl;
 	int work_time = working_day_duration - break_time;        // робочий час (з урахуванням перерв)
-	int time_for_customers = time_for_one_cust * num_of_cust; //загальний час, необхідний на клієнтів
+	int time_for_customers = time_for_one_cust * num_of_cust; // загальний час, необхідний на клієнтів
+	cout << "\nЗагальна тривалість робочого дня: " << working_day_duration << " хв\n";
+	cout << "Сумарна тривалiсть перерв: " << break_time << " хв\n";
+	cout << "Робочий час (з урахуванням перерв): " << work_time << " хв\n";
 	if (work_time >= time_for_customers) return true;
 	else return false;
 }
