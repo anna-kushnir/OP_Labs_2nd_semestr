@@ -13,9 +13,8 @@ int main()
 	string path = "File.dat";                       // шлях до файлу
 	ofstream FileOut(path, ios::binary);
 	Period working_hours = Input_Working_Hours();   // години роботи каси
-	int num;
+	int num;                                        // кількість технічних перерв
 	cout << "\nВведiть кiлькiсть технiчних перерв у роботi каси: "; cin >> num;
-	cout << "\n--- Початок введення перелiку технiчних перерв ---\n";
 	Output_Breaks_In_File(FileOut, Input_Breaks(num), working_hours, num);
 	FileOut.close();
 

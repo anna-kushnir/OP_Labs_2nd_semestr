@@ -35,15 +35,15 @@ Period Input_Working_Hours()
 // об'єктів breaks[] структури Period
 Period* Input_Breaks(int n)
 {
-	int i = 0;                          // лічильник
 	char ch;                            // змінна для зчитування знаку ":"
 	Period* breaks = new Period[n];     // масив перерв
-	while (i < n) {
+	cout << "Будь ласка, вводьте перерви у порядку зростання їх початку!\n" <<
+		"\n--- Початок введення перелiку технiчних перерв--- \n";
+	for (int i = 0; i < n; ++i) {
 		cout << "\nВведiть час початку перерви (у форматі гг:хх): ";
 		cin >> breaks[i].start.hour >> ch >> breaks[i].start.min;
 		cout << "Введiть час кінця перерви (у форматі гг:хх): ";
 		cin >> breaks[i].end.hour >> ch >> breaks[i].end.min;
-		i++;
 	}
 	return breaks;
 }
