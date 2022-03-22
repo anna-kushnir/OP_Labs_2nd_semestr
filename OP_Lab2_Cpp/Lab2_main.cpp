@@ -17,11 +17,11 @@ int main()
 	int num;
 	cout << "Введiть кiлькiсть технiчних перерв у роботi каси: "; cin >> num;
 	cout << "\n--- Початок введення перелiку технiчних перерв ---\n";
-	Output_Breaks_In_File(FileOut, Input_Breaks(num), num);
+	Output_Breaks_In_File(FileOut, Input_Breaks(num), working_hours, num);
 	FileOut.close();
 
 	cout << endl;
-	int N;
+	int N;                    // кількість клієнтів, що стоять у черзі
 	int time_for_one_customer = 15;
 	cout << "\nВведiть кiлькiсть клiєнтiв, що стоять у черзi: "; cin >> N;
 
