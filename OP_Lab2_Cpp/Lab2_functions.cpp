@@ -66,8 +66,6 @@ bool Check_Break(Period* breaks, Period& a_break, Period work, int k)
 	if (!Break_Is_In_Work_Time(a_break, work))
 		return false;
 	for (int i = 0; i < k; ++i) {
-		if (Breaks_Is_Equal(breaks[i], a_break))
-			return false;
 		if (Breaks_Is_Overlap(breaks[i], a_break))
 			return false;
 	}
@@ -97,14 +95,6 @@ bool Break_Is_In_Work_Time(Period& breaks, Period work)
 		breaks.end.min = work.end.min;
 	}
 	return true;
-}
-
-//Перевірка, чи перерви повністю ідентичні
-bool Breaks_Is_Equal(Period A, Period B)
-{
-	if (A.start.hour == B.start.hour && A.start.min == B.start.min &&
-		A.end.hour == B.end.hour && A.end.min == B.end.min) return true;
-	else return false;
 }
 
 //Перевірка, чи перерви накладаються одна на одну
