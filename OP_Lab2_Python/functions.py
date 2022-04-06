@@ -93,3 +93,25 @@ def Breaks_Is_Overlap(Is:Period,Check:Period):
     checked_break.SetTime(check_break[0],check_break[1],check_break[2],check_break[3])
     return False, checked_break
 
+#Обчислення тривалості певного періоду часу
+def Count_Duration(period:Period):
+    period = period.GetTime()
+    return (period[2] * 60 + period[3]) - (period[0] * 60 + period[1])
+
+#Перевірка, чи встигне касир обслужити num_of_cust клієнтів за робочий день
+def Check_For_Serving_Customers(file,work:Period,num_of_custs,time_for_one_cust,n):
+    working_day_duration = Count_Duration(work)
+    a_break = Period()
+    break_time = 0
+    file.seek(0,0)
+    for i in range (n):
+        a_break = pickle.load(file)
+        break_time += Count_Duration(a_break)
+    work_time = working_day_duration - break_time
+    time_for_customers = time_for_one_cust * num_of_custs
+    print('Загальна тривалість робочого дня:',working_day_duration,'хв')
+    print('Сумарна тривалiсть перерв:',break_time,'хв')
+    print('Робочий час (з урахуванням перерв):',work_time,'хв')
+    if work_time >= time_for_customers:
+        return True
+    return False

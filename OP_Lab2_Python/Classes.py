@@ -13,7 +13,6 @@ class Period:
         self.__end_hour = end_hour
         self.__end_min = end_min
         return
-
     def GetTime(self):
         return [self.__start_hour, self.__start_min, self.__end_hour, self.__end_min]
     def GetStart(self):
