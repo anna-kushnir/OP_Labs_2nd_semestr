@@ -46,7 +46,7 @@ void Output_Array(vector <Function_Sinus> Array)
 // Функція для виведення значень синусів у заданій точці x.
 void Output_Sinuses(vector <Function_Sinus> Array, float x)
 {
-	printf("\n--- Список синусiв ---\n");
+	printf("\n--- Список значень синусiв у заданій точці ---\n");
 	for (unsigned int i = 0; i < Array.size(); ++i)
 	{
 		if (i % 2 == 0) 
