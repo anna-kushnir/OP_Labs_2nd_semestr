@@ -9,11 +9,14 @@ using namespace std;
 Function_Sinus Input_Object()
 {
 	float A, B;
-	Function_Sinus Object;
+	/*Function_Sinus Object;
 	cout << "Введiть a: "; cin >> A;
 	Object.SetA(A);
 	cout << "Введiть b: "; cin >> B;
-	Object.SetB(B);
+	Object.SetB(B);*/
+	cout << "Введiть a: "; cin >> A;
+	cout << "Введiть b: "; cin >> B;
+	Function_Sinus Object(A,B);
 	return Object;
 }
 
@@ -46,7 +49,7 @@ void Output_Array(vector <Function_Sinus> Array)
 // Функція для виведення значень синусів у заданій точці x.
 void Output_Sinuses(vector <Function_Sinus> Array, float x)
 {
-	printf("\n--- Список значень синусiв у заданій точці ---\n");
+	printf("\n--- Список значень синусiв у заданiй точцi ---\n");
 	for (unsigned int i = 0; i < Array.size(); ++i)
 	{
 		if (i % 2 == 0) 
