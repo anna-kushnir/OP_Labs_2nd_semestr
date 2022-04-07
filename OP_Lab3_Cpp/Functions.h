@@ -5,6 +5,7 @@
 #include "Classes.h"
 using namespace std;
 
+Function_Sinus Input_Object();
 vector <Function_Sinus> Create_Array();
 void Output_Array(vector <Function_Sinus>);
 void Output_Sinuses(vector <Function_Sinus>, float);
