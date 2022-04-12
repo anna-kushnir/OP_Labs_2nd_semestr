@@ -1,4 +1,5 @@
-#include "Classes.h"
+#include "Functions.h"
+using namespace std;
 
 Numeral_8::Numeral_8()
 {
@@ -16,6 +17,14 @@ int Numeral_8::GetNum()
 {
 	return this->number;
 }
+
+int Numeral_8::ConvertToBin()
+{
+	string oct_num = to_string(this->number);
+	cout << "String oct_num: " << oct_num << endl;
+	return 0;
+}
+
 Numeral_8& Numeral_8::operator++()
 {
 	this->number = this->number + 1;

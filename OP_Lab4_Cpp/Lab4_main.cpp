@@ -30,6 +30,9 @@ int main()
 	cout << "\nN2 += n: " << oct << N2.GetNum();
 	N3 = N1 + N2;
 	cout << "\nN1 + N2 = " << oct << N3.GetNum() << endl;
+	N1.ConvertToBin();
+	N2.ConvertToBin();
+	N3.ConvertToBin();
 
 	system("pause");
 	return 0;

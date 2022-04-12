@@ -7,6 +7,7 @@ public:
 	Numeral_8(Numeral_8& obj);
 
 	int GetNum();
+	int ConvertToBin();
 	Numeral_8& operator++();
 	Numeral_8& operator+=(int);
 	Numeral_8 operator+(Numeral_8);
