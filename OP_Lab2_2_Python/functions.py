@@ -2,13 +2,14 @@ from Classes import Period
 import pickle
 
 #Виведення переліку технічних перерв із файлу у консоль
-def Output_File_In_Console(file,n):
+def Output_File_In_Console(file, n):
     print('\n--- Перелік технічних перерв у роботі каси ---\n')
     a_break = Period()
     file.seek(0,0)
     for i in range(n):
         a_break = pickle.load(file)
-        print(str(a_break.start_hour).zfill(2),':',str(a_break.start_min).zfill(2),' - ',str(a_break.end_hour).zfill(2),':',str(a_break.end_min).zfill(2),sep='')
+        print(str(a_break.start_hour).zfill(2),':',str(a_break.start_min).zfill(2),' - ',
+              str(a_break.end_hour).zfill(2),':',str(a_break.end_min).zfill(2),sep='')
     return
 
 #Введення користувачем часу початку та кінця робочого дня каси 
@@ -22,7 +23,7 @@ def Input_Working_Hours():
 #класу Period
 def Input_Breaks(n):
     print('Будь ласка, вводьте перерви у порядку зростання їх початку!\n',
-          '\n--- Початок введення перелiку технiчних перерв ---\n')
+          '\n--- Початок введення перелiку технiчних перерв ---')
     breaks = []
     for i in range (n):
         a_break = Period()
@@ -32,7 +33,7 @@ def Input_Breaks(n):
     return breaks
 
 #Виведення переліку перерв, перевірених на накладання та повторення, у бінарний файл
-def Output_Breaks_In_File(file,breaks,work,n):
+def Output_Breaks_In_File(file, breaks, work, n):
     m = 0
     for i in range (n):
         flag,breaks[i] = Check_Break(breaks[i],breaks,work,i)
@@ -42,7 +43,7 @@ def Output_Breaks_In_File(file,breaks,work,n):
     return m
 
 #Перевірка перерв на накладання та чи не виходять вони за межі робочого дня
-def Check_Break(a_break:Period,breaks,work,k):
+def Check_Break(a_break:Period, breaks, work, k):
     flag1,a_break = Break_Is_In_Work_Time(a_break,work)
     if not flag1:
         return False, a_break
@@ -53,7 +54,7 @@ def Check_Break(a_break:Period,breaks,work,k):
     return True, a_break
 
 #Перевірка, чи не виходить перерва за межі початку та кінця робочого дня
-def Break_Is_In_Work_Time(a_break:Period,work:Period):
+def Break_Is_In_Work_Time(a_break:Period, work:Period):
     if (a_break.end_hour < work.start_hour or a_break.end_hour == work.start_hour and a_break.end_min <= work.start_min
     or a_break.start_hour > work.end_hour or a_break.start_hour == work.end_hour and a_break.start_min >= work.end_min):
         return False, a_break
@@ -66,7 +67,7 @@ def Break_Is_In_Work_Time(a_break:Period,work:Period):
     return True, a_break
 
 #Перевірка на накладання та повторення перерв
-def Breaks_Is_Overlap(a_break:Period,check_break:Period):
+def Breaks_Is_Overlap(a_break:Period, check_break:Period):
     if ((a_break.start_hour < check_break.start_hour or a_break.start_hour == check_break.start_hour and a_break.start_min <= check_break.start_min)
     and (a_break.end_hour > check_break.end_hour or a_break.end_hour == check_break.end_hour and a_break.end_min >= check_break.end_min)):
         return True, check_break
@@ -85,7 +86,7 @@ def Count_Duration(period:Period):
     return (period.end_hour * 60 + period.end_min) - (period.start_hour * 60 + period.start_min)
 
 #Перевірка, чи встигне касир обслужити num_of_cust клієнтів за робочий день
-def Check_For_Serving_Customers(file,work:Period,num_of_custs,time_for_one_cust,n):
+def Check_For_Serving_Customers(file, work:Period, num_of_custs, time_for_one_cust, n):
     working_day_duration = Count_Duration(work)
     a_break = Period()
     break_time = 0
