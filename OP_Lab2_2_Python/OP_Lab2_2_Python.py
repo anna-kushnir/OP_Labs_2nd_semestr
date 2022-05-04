@@ -13,8 +13,8 @@ num_of_checked_breaks = Output_Breaks_In_File(FileOut,Input_Breaks(num_of_breaks
 FileOut.close()
 
 FileIn = open(path,'rb')
-work = working_hours.GetTime()
-print('\nГодини роботи: ',str(work[0]).zfill(2),':',str(work[1]).zfill(2),' - ',str(work[2]).zfill(2),':',str(work[3]).zfill(2),sep='')
+print('\nГодини роботи: ',str(working_hours.start_hour).zfill(2),':',str(working_hours.start_min).zfill(2),' - ',
+	  str(working_hours.end_hour).zfill(2),':',str(working_hours.end_min).zfill(2),sep='')
 Output_File_In_Console(FileIn,num_of_checked_breaks)
 
 time_for_one_customer = 15
