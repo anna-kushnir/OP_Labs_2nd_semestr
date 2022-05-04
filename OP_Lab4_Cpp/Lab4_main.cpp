@@ -6,34 +6,33 @@
 вказану величину. Знайти суму змінених чисел N1 та N2 і зберегти її в N3. Перевести отримане значення 
 N3 у двійковий формат двома способами (звичайним і скороченим). */
 
-#define _CRT_SECURE_NO_WARNINGS
 #include "Functions.h"
 using namespace std;
 
 int main()
 {
 	setlocale(LC_ALL, "russian");
-	int n1, n2;
-	cout << "Введiть вiсiмкове число N1: "; cin >> oct >> n1;
-	cout << "Введiть вiсiмкове число N2: "; cin >> oct >> n2;
-	Numeral_8 N1(n1);
-	Numeral_8 N2(n2);
-	Numeral_8 N3;
-	cout << "\nN1 та N2 у вiсiмковiй СЧ:\n" << oct << N1.GetNum() << endl << oct << N2.GetNum() << endl;
-	cout << "\nN1 та N2 у десятковiй СЧ:\n" << dec << N1.GetNum() << endl << dec << N2.GetNum() << endl;
-	int n;
-	cout << "Введiть n: "; 
-	cin >> oct >> n;
+	long long n1;
+	cout << "Введiть вiсiмкове число N1: "; cin >> n1;
+	while (!isNumeral8(n1)) {
+		cout << "Ви ввели число, що не вiдповiдає вiсiмковiй СЧ! Введiть N1 ще раз: "; cin >> n1;
+	}
+	Numeral_8 N1(n1), N2(N1), N3;
+	cout << "\nПоточнi данi:";
+	outputNums(N1, N2, N3);
+
+	long long n;
+	cout << "\nВведiть величину, на яку ви бажаєте збiльшити N2 (вiсiмкова СЧ): "; cin >> n;
+	while (!isNumeral8(n)) {
+		cout << "Ви ввели число у невiрнiй системi числення! Спробуйте ще раз: "; cin >> n;
+	}
 	++N1;
 	N2 += n;
-	cout << "\n++N1: " << oct << N1.GetNum();
-	cout << "\nN2 += n: " << oct << N2.GetNum();
 	N3 = N1 + N2;
-	cout << "\nN1 + N2 = " << oct << N3.GetNum() << endl;
-	N1.ConvertToBin();
-	N2.ConvertToBin();
-	N3.ConvertToBin();
-
+	cout << "\nЗмiненi данi:";
+	outputNums(N1, N2, N3);
+	cout << "\nN3, конвертоване у двiйкову СЧ звичайним способом:  " << N3.convertToBinUsual();
+	cout << "\nN3, конвертоване у двiйкову СЧ скороченим способом: " << N3.convertToBinReduced() << "\n\n";
 	system("pause");
 	return 0;
 }

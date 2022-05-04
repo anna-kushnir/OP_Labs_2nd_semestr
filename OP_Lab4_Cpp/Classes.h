@@ -1,14 +1,15 @@
 class Numeral_8
 {
-	int number;
+	long long number;
 public:
 	Numeral_8();
-	Numeral_8(int number);
+	Numeral_8(long long number);
 	Numeral_8(Numeral_8& obj);
 
-	int GetNum();
-	int ConvertToBin();
+	long long getNum();
+	long long convertToBinUsual();
+	long long convertToBinReduced();
 	Numeral_8& operator++();
-	Numeral_8& operator+=(int);
-	Numeral_8 operator+(Numeral_8);
+	Numeral_8& operator+=(long long);
+	Numeral_8 operator+(Numeral_8);	
 };
