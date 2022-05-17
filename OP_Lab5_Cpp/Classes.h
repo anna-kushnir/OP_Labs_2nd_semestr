@@ -21,7 +21,6 @@ public:
 	virtual long long convertToBase(int base) = 0;
 
 	friend ostream& operator<<(ostream& out, const TIntNumber& obj);
-	friend istream& operator>>(istream& in, TIntNumber& obj);
 };
 
 class TIntNumber2 : public TIntNumber

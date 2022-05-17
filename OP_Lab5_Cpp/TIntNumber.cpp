@@ -49,8 +49,3 @@ ostream& operator<<(ostream& out, const TIntNumber& obj)
 	out << obj.number;
 	return out;
 }
-istream& operator>>(istream& in, TIntNumber& obj)
-{
-	in >> obj.number;
-	return in;
-}

@@ -22,4 +22,4 @@ void outputNums(const vector<TIntNumber8>& nums);
 TIntNumber2& countSum(vector<TIntNumber2>& nums);
 TIntNumber8& countSum(vector<TIntNumber8>& nums);
 
-void findMin(TIntNumber2& obj1, TIntNumber2& obj2);
+void findMin(TIntNumber2& bins, TIntNumber2& octs);
