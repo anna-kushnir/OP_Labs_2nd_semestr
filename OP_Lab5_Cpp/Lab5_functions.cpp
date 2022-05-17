@@ -1,4 +1,4 @@
-#include "Functions.h"
+ï»¿#include "Functions.h"
 using namespace std;
 
 bool isNumeralBase(long long num, int base)
@@ -40,14 +40,14 @@ vector<TIntNumber2> inputBinNums(int k)
 {
 	vector<TIntNumber2> nums(k);
 	for (int i = 0; i < k; ++i) {
-		cout << "Ââåä³òü äâ³éêîâå ÷èñëî: ";
+		cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ Ð´Ð²Ñ–Ð¹ÐºÐ¾Ð²Ðµ Ñ‡Ð¸ÑÐ»Ð¾: ";
 		int num;
 		cin >> num;
 		if (isNumeralBase(num, 2)) {
 			nums[i] = TIntNumber2(num);
 		}
 		else {
-			cout << "Âè ââåëè íåêîðåêòíå ÷èñëî! Ñïðîáóéòå ùå ðàç!\n";
+			cout << "Ð’Ð¸ Ð²Ð²ÐµÐ»Ð¸ Ð½ÐµÐºÐ¾Ñ€ÐµÐºÑ‚Ð½Ðµ Ñ‡Ð¸ÑÐ»Ð¾! Ð¡Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ñ‰Ðµ Ñ€Ð°Ð·!\n";
 			i--;
 		}
 	}
@@ -57,14 +57,14 @@ vector<TIntNumber8> inputOctNums(int k)
 {
 	vector<TIntNumber8> nums(k);
 	for (int i = 0; i < k; ++i) {
-		cout << "Ââåä³òü â³ñ³ìêîâå ÷èñëî: ";
+		cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ Ð²Ñ–ÑÑ–Ð¼ÐºÐ¾Ð²Ðµ Ñ‡Ð¸ÑÐ»Ð¾: ";
 		int num;
 		cin >> num;
 		if (isNumeralBase(num, 8)) {
 			nums[i] = TIntNumber8(num);
 		}
 		else {
-			cout << "Âè ââåëè íåêîðåêòíå ÷èñëî! Ñïðîáóéòå ùå ðàç!\n";
+			cout << "Ð’Ð¸ Ð²Ð²ÐµÐ»Ð¸ Ð½ÐµÐºÐ¾Ñ€ÐµÐºÑ‚Ð½Ðµ Ñ‡Ð¸ÑÐ»Ð¾! Ð¡Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ñ‰Ðµ Ñ€Ð°Ð·!\n";
 			i--;
 		}
 	}
@@ -73,14 +73,14 @@ vector<TIntNumber8> inputOctNums(int k)
 
 void outputNums(const vector<TIntNumber2>& nums)
 {
-	cout << "\nÄâ³éêîâ³ ÷èñëà: "; 
+	cout << "\nÐ”Ð²Ñ–Ð¹ÐºÐ¾Ð²Ñ– Ñ‡Ð¸ÑÐ»Ð°: "; 
 	for (size_t i = 0; i < nums.size(); ++i) {
 		cout << nums[i] << " ";
 	}
 }
 void outputNums(const vector<TIntNumber8>& nums)
 {
-	cout << "\nÂ³ñ³ìêîâ³ ÷èñëà: ";
+	cout << "\nÐ’Ñ–ÑÑ–Ð¼ÐºÐ¾Ð²Ñ– Ñ‡Ð¸ÑÐ»Ð°: ";
 	for (size_t i = 0; i < nums.size(); ++i) {
 		cout << nums[i] << " ";
 	}
@@ -107,12 +107,12 @@ void findMin(TIntNumber2& bins, TIntNumber2& octs)
 {
 	int flag = bins.compare(octs);
 	if (flag < 0) {
-		cout << "\nÑóìà äâ³éêîâèõ ÷èñåë ìåíøà, í³æ â³ñ³ìêîâèõ\n";
+		cout << "\nÐ¡ÑƒÐ¼Ð° Ð´Ð²Ñ–Ð¹ÐºÐ¾Ð²Ð¸Ñ… Ñ‡Ð¸ÑÐµÐ» Ð¼ÐµÐ½ÑˆÐ°, Ð½Ñ–Ð¶ Ð²Ñ–ÑÑ–Ð¼ÐºÐ¾Ð²Ð¸Ñ…\n";
 	}
 	else if (flag == 0) {
-		cout << "\nÑóìè äâ³éêîâèõ òà â³ñ³ìêîâèõ ÷èñåë ð³âí³\n";
+		cout << "\nÐ¡ÑƒÐ¼Ð¸ Ð´Ð²Ñ–Ð¹ÐºÐ¾Ð²Ð¸Ñ… Ñ‚Ð° Ð²Ñ–ÑÑ–Ð¼ÐºÐ¾Ð²Ð¸Ñ… Ñ‡Ð¸ÑÐµÐ» Ñ€Ñ–Ð²Ð½Ñ–\n";
 	}
 	else {
-		cout << "\nÑóìà â³ñ³ìêîâèõ ÷èñåë ìåíøà, í³æ äâ³éêîâèõ\n";
+		cout << "\nÐ¡ÑƒÐ¼Ð° Ð²Ñ–ÑÑ–Ð¼ÐºÐ¾Ð²Ð¸Ñ… Ñ‡Ð¸ÑÐµÐ» Ð¼ÐµÐ½ÑˆÐ°, Ð½Ñ–Ð¶ Ð´Ð²Ñ–Ð¹ÐºÐ¾Ð²Ð¸Ñ…\n";
 	}
 }
