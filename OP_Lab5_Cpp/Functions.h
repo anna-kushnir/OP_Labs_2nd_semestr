@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <iostream>
 #include <iomanip>
 #include <stdio.h>
@@ -21,14 +21,14 @@ vector<T1> inputNums(int k, int base)
 {
 	vector<T1> nums(k);
 	for (int i = 0; i < k; ++i) {
-		cout << "Ââåä³òü ÷èñëî: ";
+		cout << "Ð’Ð²ÐµÐ´Ñ–Ñ‚ÑŒ Ñ‡Ð¸ÑÐ»Ð¾: ";
 		int num;
 		cin >> num;
 		if (isNumeralBase(num, base)) {
 			nums[i] = T1(num);
 		}
 		else {
-			cout << "Âè ââåëè íåêîðåêòíå ÷èñëî! Ñïðîáóéòå ùå ðàç!\n";
+			cout << "Ð’Ð¸ Ð²Ð²ÐµÐ»Ð¸ Ð½ÐµÐºÐ¾Ñ€ÐµÐºÑ‚Ð½Ðµ Ñ‡Ð¸ÑÐ»Ð¾! Ð¡Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ Ñ‰Ðµ Ñ€Ð°Ð·!\n";
 			--i;
 		}
 	}

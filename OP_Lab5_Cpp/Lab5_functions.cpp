@@ -1,4 +1,4 @@
-#include "Functions.h"
+ï»¿#include "Functions.h"
 using namespace std;
 
 bool isNumeralBase(long long num, int base)
@@ -40,12 +40,12 @@ void findMin(TIntNumber2& bins, TIntNumber2& octs)
 {
 	int flag = bins.compare(octs);
 	if (flag < 0) {
-		cout << "\nÑóìà äâ³éêîâèõ ÷èñåë ìåíøà, í³æ â³ñ³ìêîâèõ\n";
+		cout << "\nÐ¡ÑƒÐ¼Ð° Ð´Ð²Ñ–Ð¹ÐºÐ¾Ð²Ð¸Ñ… Ñ‡Ð¸ÑÐµÐ» Ð¼ÐµÐ½ÑˆÐ°, Ð½Ñ–Ð¶ Ð²Ñ–ÑÑ–Ð¼ÐºÐ¾Ð²Ð¸Ñ…\n";
 	}
 	else if (flag == 0) {
-		cout << "\nÑóìè äâ³éêîâèõ òà â³ñ³ìêîâèõ ÷èñåë ð³âí³\n";
+		cout << "\nÐ¡ÑƒÐ¼Ð¸ Ð´Ð²Ñ–Ð¹ÐºÐ¾Ð²Ð¸Ñ… Ñ‚Ð° Ð²Ñ–ÑÑ–Ð¼ÐºÐ¾Ð²Ð¸Ñ… Ñ‡Ð¸ÑÐµÐ» Ñ€Ñ–Ð²Ð½Ñ–\n";
 	}
 	else {
-		cout << "\nÑóìà â³ñ³ìêîâèõ ÷èñåë ìåíøà, í³æ äâ³éêîâèõ\n";
+		cout << "\nÐ¡ÑƒÐ¼Ð° Ð²Ñ–ÑÑ–Ð¼ÐºÐ¾Ð²Ð¸Ñ… Ñ‡Ð¸ÑÐµÐ» Ð¼ÐµÐ½ÑˆÐ°, Ð½Ñ–Ð¶ Ð´Ð²Ñ–Ð¹ÐºÐ¾Ð²Ð¸Ñ…\n";
 	}
 }
