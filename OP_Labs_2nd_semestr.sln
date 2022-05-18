@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OP_Lab4_Cpp", "OP_Lab4_Cpp\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OP_Lab5_Cpp", "OP_Lab5_Cpp\OP_Lab5_Cpp.vcxproj", "{75163CE7-4144-42F4-A69D-44ED4004B358}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OP_Lab5_Python", "OP_Lab5_Python\OP_Lab5_Python.pyproj", "{3581A14F-98EA-4D6E-94CD-33C6EC82C5CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,12 @@ Global
 		{75163CE7-4144-42F4-A69D-44ED4004B358}.Release|x64.Build.0 = Release|x64
 		{75163CE7-4144-42F4-A69D-44ED4004B358}.Release|x86.ActiveCfg = Release|Win32
 		{75163CE7-4144-42F4-A69D-44ED4004B358}.Release|x86.Build.0 = Release|Win32
+		{3581A14F-98EA-4D6E-94CD-33C6EC82C5CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3581A14F-98EA-4D6E-94CD-33C6EC82C5CE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3581A14F-98EA-4D6E-94CD-33C6EC82C5CE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3581A14F-98EA-4D6E-94CD-33C6EC82C5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3581A14F-98EA-4D6E-94CD-33C6EC82C5CE}.Release|x64.ActiveCfg = Release|Any CPU
+		{3581A14F-98EA-4D6E-94CD-33C6EC82C5CE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
