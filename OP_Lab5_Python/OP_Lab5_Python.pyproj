@@ -22,6 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="classes.py" />
+    <Compile Include="converting.py" />
     <Compile Include="functions.py" />
     <Compile Include="OP_Lab5_Python.py" />
   </ItemGroup>

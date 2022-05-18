@@ -1,4 +1,4 @@
-import classes
+from classes import *
 
 def isNumeralBase(num, base):
     while num:
@@ -8,55 +8,48 @@ def isNumeralBase(num, base):
             return False
     return True
 
-def convertFromDec(dec, base):
-    num = 0
-    i = 0
-    while dec > base - 1:
-        num += (dec % base) * 10**i
-        i += 1
-        dec = dec // base
-    return num + dec * 10**i
-
-def convertToDec(num, base):
-    dec = 0
-    i = 0
-    while num:
-        dec += (num % 10) * base**i
-        i += 1
-        num = num // 10
-    return dec
-
 def inputNums(k, base):
-    if base == 2:
-       obj= TIntNumber2(0)
-    elif base == 8:
-        obj = TIntNumber8(0)
-    else:
-        obj = TIntNumber(0, base)
     nums = []
-    for i in range (k):
-        num = int(input("Введіть число:"))
+    i = 0
+    while i < k:
+        num = int(input("Введіть число: "))
         if isNumeralBase(num, base):
-            obj.setNum(num)
-            nums = nums + obj
+            if base == 2:
+                obj = TIntNumber2(num)
+            elif base == 8:
+                obj = TIntNumber8(num)
+            else:
+                continue
+            nums.append(obj)
         else:
             print("Ви ввели некоректне число! Спробуйте ще раз!")
             i -= 1
+        i += 1
     return nums
 
 def outputNums(nums):
-    for i in range (0, nums.size(), 1):
-        print(nums[i], end = " ")
+    for i in range (0, len(nums), 1):
+        print(nums[i].getNumber, end = " ")
+    print()
     return
 
-def countSum(nums : list, base):
+def countSum(nums, base):
     if base == 2:
-        sum = TIntNumber2(0)
+        sum = TIntNumber2()
     elif base == 8:
-        sum = TIntNumber8(0)
+        sum = TIntNumber8()
     else:
-        sum = TIntNumber(0, base)
-    for i in range (0, nums.size(), 1):
-        sum.add(nums[i])
+        return 0
+    for i in range (0, len(nums), 1):
+        sum = sum.add(nums[i])
     return sum
 
+def findMin(bins : TIntNumber2, octs : TIntNumber2):
+    flag = bins.compare(octs)
+    if flag < 0:
+        print("\nСума двійкових чисел менша, ніж вісімкових")
+    elif flag == 0:
+        print("\nСуми двійкових та вісімкових чисел рівні")
+    else:
+        print("\nСума вісімкових чисел менша, ніж двійкових")
+    return

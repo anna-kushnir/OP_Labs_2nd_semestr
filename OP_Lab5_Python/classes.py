@@ -1,61 +1,60 @@
 from abc import ABC, abstractmethod
-from functions import convertFromDec, convertToDec
+from converting import convertFromDec, convertToDec
 
-class TIntNumber(object):
-    def __init__(self, number, base):
-        self._number = number
-        self._base = base
+class TIntNumber(ABC):
+    def __init__(self, number = 0, base = 10):
+        self.__number = number
+        self.__base = base
+    @property
     def getBase(self):
-        return self._base
-    def getNum(self):
-        return self._number
-    def setNum(self, number):
-        self._number = number
-        return
+        return self.__base
+    @property
+    def getNumber(self):
+        return self.__number
 
     @abstractmethod
-    def add(self, obj):
+    def add(self, obj : 'TIntNumber'):
         pass
     @abstractmethod
-    def compare(self, obj):
-        if self._number < obj._number:
+    def compare(self, obj : 'TIntNumber'):
+        if self.__number < obj.__number:
             return -1
-        elif self._number == obj._number:
+        elif self.__number == obj.__number:
            return 0
         else:
            return 1
     @abstractmethod
     def convertToBase(self, base):
-        if self.base == 10:
-            return convertFromDec(self._number, base)
+        if self.__base == 10:
+            return convertFromDec(self.__number, base)
         elif base == 10:
-            return convertToDec(self._number, self._base)
+            return convertToDec(self.__number, self.__base)
         else:
-            return convertFromDec(convertToDec(self._number, self._base), base)
+            return convertFromDec(convertToDec(self.__number, self.__base), base)
     pass
 
 
 class TIntNumber2(TIntNumber):
-    def __init__ (self, number):
+    def __init__ (self, number = 0):
         super().__init__(number, 2)
-    def add(self, obj):
-        self._number = convertFromDec(convertToDec(self._number, 2) + convertToDec(obj._number, 2), 2)
-        return self
-    def compare(self, obj):
-        super().compare(obj)
+    def add(self, obj : 'TIntNumber2'):
+        sum = TIntNumber2(convertFromDec(convertToDec(self.getNumber, 2) + convertToDec(obj.getNumber, 2), 2))
+        return sum
+    def compare(self, obj : 'TIntNumber2'):
+        return super().compare(obj)
     def convertToBase(self, base = 8):
         return super().convertToBase(base)
     pass
 
 
 class TIntNumber8(TIntNumber):
-    def __init__ (self, number):
+    def __init__ (self, number = 0):
         super().__init__(number, 8)
-    def add(self, obj):
-        self._number = convertFromDec(convertToDec(self._number, 8) + convertToDec(obj._number, 8), 8)
-        return self
-    def compare(self, obj):
-        super().compare(obj)
+    def add(self, obj : 'TIntNumber8'):
+        sum = TIntNumber8(convertFromDec(convertToDec(self.getNumber, 8) + convertToDec(obj.getNumber, 8), 8))
+        return sum
+    def compare(self, obj : 'TIntNumber8'):
+        return super().compare(obj)
     def convertToBase(self, base = 2):
         return super().convertToBase(base)
     pass
