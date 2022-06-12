@@ -1,4 +1,5 @@
-#include "Functions.h"
+﻿#include "Functions.h"
+
 using namespace std;
 
 bool isOperation(string symb)
@@ -18,22 +19,15 @@ vector<string> readFile(ifstream& file)
 		string st = expr.substr(k, 1);
 		if (st == " ") {
 			k++;
-			continue;
 		}
-		if (st == "(" || st == ")") {
+		else if (st == "(" || st == ")" || isOperation(st)) {
 			mass.push_back(st);
 			k++;
-			continue;
 		}
-		if (isOperation(st)) {
-			mass.push_back(st);
-			k++;
-			continue;
-		}
-		if (isdigit(expr[k])) {
+		else if (isdigit(expr[k])) {
 			m = k + 1;
 			while (m < expr.length()) {
-				if (isdigit(expr[m]) || expr[m] == ',') {
+				if (isdigit(expr[m]) || expr[m] == '.') {
 					m++;
 				}
 				else break;
@@ -41,21 +35,18 @@ vector<string> readFile(ifstream& file)
 			string num = expr.substr(k, m - k);
 			mass.push_back(num);
 			k = m;
-			continue;
 		}
-		return { 0 };
+		else return {""};
 	}
 	return mass;
 }
 
-void outputVector(const vector<string>& vect)
+void outputVector(const vector<string>& vect, ofstream& out)
 {
-	int i = 0;
-	while (i < vect.size()) {
-		cout << vect[i] << " ";
-		i++;
+	for (int i = 0; i < vect.size() - 1; ++i) {
+		out << vect[i] << " ";
 	}
-	cout << "\n\n";
+	out << vect[vect.size() - 1];
 }
 
 Node* makeTree(const vector<string>& vect, int& i)
@@ -80,4 +71,42 @@ Node* makeTree(const vector<string>& vect, int& i)
 		}
 	}
 	return Tree;
+}
+
+void outputTree(Node* Tree, int level, ofstream& out)
+{
+	if (Tree != NULL) {
+		outputTree(Tree->right, level + 1, out);
+		for (int i = 0; i < level; ++i) {
+			out << "     ";
+		}
+		out << "  " << Tree->getKey() << "\n";
+		outputTree(Tree->left, level + 1, out);
+	}
+}
+
+double count(Node* Tree)
+{
+	if (isdigit(Tree->getKey()[0])) {
+		return stof(Tree->getKey());
+	}
+	switch (Tree->getKey()[0]) {
+	case '+':
+		return count(Tree->left) + count(Tree->right);
+	case '-':
+		return count(Tree->left) - count(Tree->right);
+	case '*':
+		return count(Tree->left) * count(Tree->right);
+	case '/':
+		return count(Tree->left) / count(Tree->right);
+	}
+}
+
+void clearMemory(Node* Tree)
+{
+	if (Tree != NULL) {
+		clearMemory(Tree->left);
+		clearMemory(Tree->right);
+		free(Tree);
+	}
 }
