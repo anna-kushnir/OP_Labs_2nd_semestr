@@ -78,7 +78,7 @@ void outputTree(Node* Tree, int level, ofstream& out)
 	if (Tree != NULL) {
 		outputTree(Tree->right, level + 1, out);
 		for (int i = 0; i < level; ++i) {
-			out << "     ";
+			out << "         ";
 		}
 		out << "  " << Tree->getKey() << "\n";
 		outputTree(Tree->left, level + 1, out);
