@@ -7,11 +7,12 @@ class Node
 	string key;
 
 public:
+	Node* left,
+		* right;
+
 	Node();
+	Node(string key);
 
 	void setKey(string key);
 	string getKey();
-
-	Node* left;
-	Node* right;
 };

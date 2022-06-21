@@ -6,6 +6,12 @@ Node::Node()
 	left = NULL;
 	right = NULL;
 }
+Node::Node(string key)
+{
+	this->key = key;
+	left = NULL;
+	right = NULL;
+}
 
 void Node::setKey(string key)
 {
