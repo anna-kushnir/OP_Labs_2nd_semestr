@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "Node.h"
 #include <vector>
 #include <fstream>
@@ -6,13 +6,13 @@ using namespace std;
 
 class BinaryTree
 {
-	// Будує дерево-формулу із заданого масиву символів.
+	// Р‘СѓРґСѓС” РґРµСЂРµРІРѕ-С„РѕСЂРјСѓР»Сѓ С–Р· Р·Р°РґР°РЅРѕРіРѕ РјР°СЃРёРІСѓ СЃРёРјРІРѕР»С–РІ.
 	static Node* createTree(const vector<string>& symbs, int& index);
-	// Допоміжна функція для printTree().
+	// Р”РѕРїРѕРјС–Р¶РЅР° С„СѓРЅРєС†С–СЏ РґР»СЏ printTree().
 	static void printTree(Node* node, int level, ofstream& out);
-	// Допоміжна функція для clearMemory().
+	// Р”РѕРїРѕРјС–Р¶РЅР° С„СѓРЅРєС†С–СЏ РґР»СЏ clearMemory().
 	static void clearMemory(Node* node);
-	// Допоміжна функція для countValueOfExpression().
+	// Р”РѕРїРѕРјС–Р¶РЅР° С„СѓРЅРєС†С–СЏ РґР»СЏ countValueOfExpression().
 	static double count(Node* node);
 
 public:
@@ -20,10 +20,10 @@ public:
 
 	BinaryTree(const vector<string>& symbs);
 
-	// Обчислює значення дерева-формули.
+	// РћР±С‡РёСЃР»СЋС” Р·РЅР°С‡РµРЅРЅСЏ РґРµСЂРµРІР°-С„РѕСЂРјСѓР»Рё.
 	double countValueOfExpression();
-	// Здійснює виведення дерева у файл out, використовуючи зворотній симетричний обхід (справа наліво).
+	// Р—РґС–Р№СЃРЅСЋС” РІРёРІРµРґРµРЅРЅСЏ РґРµСЂРµРІР° Сѓ С„Р°Р№Р» out, РІРёРєРѕСЂРёСЃС‚РѕРІСѓСЋС‡Рё Р·РІРѕСЂРѕС‚РЅС–Р№ СЃРёРјРµС‚СЂРёС‡РЅРёР№ РѕР±С…С–Рґ (СЃРїСЂР°РІР° РЅР°Р»С–РІРѕ).
 	void printTree(ofstream& out);
-	// Очищує пам'ять, використану деревом.
+	// РћС‡РёС‰СѓС” РїР°Рј'СЏС‚СЊ, РІРёРєРѕСЂРёСЃС‚Р°РЅСѓ РґРµСЂРµРІРѕРј.
 	void clearMemory();
 };
